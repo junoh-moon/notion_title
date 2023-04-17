@@ -54,12 +54,13 @@ def get_title(today: date):
 
 
 def main(args: Namespace):
-    today = date.fromisoformat(args.date)
-    title = get_title(today)
+    title = get_title(args.date)
     print(title)
 
     if args.notify:
         post("https://ntfy.sixtyfive.me/notion_title", data=title.encode())
+
+    return
 
 
 if __name__ == "__main__":
