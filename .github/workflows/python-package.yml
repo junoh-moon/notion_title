@@ -32,9 +32,9 @@ jobs:
         python-version: ["3.10"]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
@@ -69,11 +69,11 @@ jobs:
           password: ${{ secrets.REGISTRY_PASSWORD }}
       -
         name: short-sha
-        uses: benjlevesque/short-sha@v1.2
+        uses: benjlevesque/short-sha@v2.2
         id: short-sha
       -
         name: Build and push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           #context: .
           #file: ./Dockerfile
@@ -103,7 +103,7 @@ jobs:
     steps:
       -
         name: short-sha
-        uses: benjlevesque/short-sha@v1.2
+        uses: benjlevesque/short-sha@v2.2
         id: short-sha
       -
         name: notifying
