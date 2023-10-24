@@ -5,9 +5,12 @@ from argparse import (
     Namespace,
 )
 from datetime import date
-from pprint import pprint as print
 
 from requests import post
+
+import log
+
+logger = log.init()
 
 
 def get_month_and_week_number(date: datetime.date) -> tuple[str, int]:
@@ -55,7 +58,7 @@ def get_title(today: date):
 
 def main(args: Namespace):
     title = get_title(args.date)
-    print(title)
+    logger.info(title)
 
     if args.notify:
         post("https://ntfy.sixtyfive.me/notion_title", data=title.encode())
