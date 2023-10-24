@@ -34,10 +34,16 @@ class Updater:
 
     def watch(self):
         while True:
-            self._detect_changes(self.watch_page_id)
+            self.update()
             sleep(self.INTERVAL)
 
+    def update(self):
+        page_ids = self._detect_changes(self.watch_page_id)
+        for page_id in page_ids:
+            self._update_title(page_id)
+
     def _detect_changes(self, parent_child_id: str):
+        page_ids = []
         children = self.notion.blocks.children.list(parent_child_id)
         for child in children["results"]:  # type: ignore
             logger.debug(child)
@@ -46,12 +52,12 @@ class Updater:
             if child["child_page"]["title"] != self.TEMPLATE_NAME:
                 continue
             child_id = child["id"]
-            logger.info(f"{child_id=}")
+            page_ids.append(child_id)
 
-            self.update_title(child_id)
-            break
+        logger.info(f"{page_ids=}")
+        return page_ids
 
-    def update_title(self, page_id: str):
+    def _update_title(self, page_id: str):
         body = self.notion.pages.retrieve(page_id)
         logger.info(f"Previous: {body}")
 

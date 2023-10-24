@@ -66,8 +66,13 @@ def main(args: Namespace):
     return
 
 
-if __name__ == "__main__":
-    parser = ArgumentParser()
+def prepare_args(parser: ArgumentParser):
     parser.add_argument("date", type=date.fromisoformat)
     parser.add_argument("--notify", action="store_true")
+
+
+if __name__ == "__main__":
+    parser = ArgumentParser()
+    prepare_args(parser)
+
     main(parser.parse_args())

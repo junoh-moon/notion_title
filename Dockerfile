@@ -13,9 +13,10 @@ RUN poetry config virtualenvs.create false && poetry config virtualenvs.in-proje
 
 COPY pyproject.toml             ./
 COPY poetry.lock                ./
-COPY title.py                 ./
+COPY title.py                   ./
+COPY updater.py                 ./
 
 RUN poetry install --no-dev
 
 
-ENTRYPOINT [ "python", "title.py" ]
+ENTRYPOINT [ "python", "main.py" ]
