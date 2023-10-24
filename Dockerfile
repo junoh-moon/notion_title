@@ -16,6 +16,7 @@ COPY poetry.lock                ./
 COPY title.py                   ./
 COPY updater.py                 ./
 COPY main.py                    ./
+COPY log.py                     ./
 
 RUN poetry install --no-dev
 
