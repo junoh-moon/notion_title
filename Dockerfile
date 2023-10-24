@@ -15,6 +15,7 @@ COPY pyproject.toml             ./
 COPY poetry.lock                ./
 COPY title.py                   ./
 COPY updater.py                 ./
+COPY main.py                    ./
 
 RUN poetry install --no-dev
 
