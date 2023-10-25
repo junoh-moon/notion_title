@@ -49,6 +49,7 @@ class Updater:
     def _detect_changes(self, parent_child_id: str):
         page_title_mapping = dict()
         children = self.notion.blocks.children.list(parent_child_id)
+        print(children)
         for child in children["results"]:  # type: ignore
             logger.debug(child)
             if child["type"] != "child_page":
@@ -81,7 +82,7 @@ class Updater:
         resp = self.notion.pages.update(page_id, **body)  # type: ignore
         logger.info(f"After: {resp}")
 
-        return
+        return resp["properties"]["title"]["title"][0]["text"]["content"]
 
 
 def main():
