@@ -11,9 +11,9 @@ def main(args):
     if args.generate:
         title.main(args)
     elif args.watch:
-        updater.Updater(updater.twenty_twenty_three_id).watch()
+        updater.Updater(updater.PAGE_ID).watch()
     elif args.update:
-        updater.Updater(updater.twenty_twenty_three_id).update()
+        updater.Updater(updater.PAGE_ID).update()
     return
 
 

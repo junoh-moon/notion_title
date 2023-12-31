@@ -17,7 +17,7 @@ logger = log.init()
 
 
 WEEKLY_ID = "0ba2699e66a64826b0dc32563ae1f41e"
-twenty_twenty_three_id = "b1a820decce443c795f7157f77bd7698"
+PAGE_ID = "b1a820decce443c795f7157f77bd7698"
 
 
 class Updater:
@@ -86,7 +86,7 @@ class Updater:
 
 
 def main():
-    watcher = Updater(twenty_twenty_three_id)
+    watcher = Updater(PAGE_ID)
     watcher.watch()
 
 
