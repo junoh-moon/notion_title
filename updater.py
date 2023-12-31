@@ -49,7 +49,7 @@ class Updater:
     def _detect_changes(self, parent_child_id: str):
         page_title_mapping = dict()
         children = self.notion.blocks.children.list(parent_child_id)
-        print(children)
+        logger.info(children)
         for child in children["results"]:  # type: ignore
             logger.debug(child)
             if child["type"] != "child_page":
