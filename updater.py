@@ -16,8 +16,12 @@ load_dotenv()
 logger = log.init()
 
 
-WEEKLY_ID = "0ba2699e66a64826b0dc32563ae1f41e"
-PAGE_ID = "b1a820decce443c795f7157f77bd7698"
+PAGE_ID_MAPPING = {
+    "Weekly progress home": "0ba2699e66a64826b0dc32563ae1f41e",
+    "2023": "b1a820decce443c795f7157f77bd7698",
+    "2024": "2ba0c3f7a50a43d680b51ce1a59f423f",
+}
+PAGE_ID = PAGE_ID_MAPPING["2024"]
 
 
 class Updater:
