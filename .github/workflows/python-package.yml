@@ -90,6 +90,7 @@ jobs:
       -
         name: short-sha
         uses: benjlevesque/short-sha@v2.2
+        id: short-sha
       -
         name: pulling latest docker image on remote server
         uses: appleboy/ssh-action@master
