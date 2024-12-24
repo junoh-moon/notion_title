@@ -4,6 +4,11 @@ from datetime import (
     timedelta,
 )
 from time import sleep
+from typing import (
+    Callable,
+    Iterable,
+    TypeVar,
+)
 
 from dotenv import load_dotenv
 from notion_client import Client
@@ -17,11 +22,21 @@ logger = log.init()
 
 
 PAGE_ID_MAPPING = {
-    "Weekly progress home": "0ba2699e66a64826b0dc32563ae1f41e",
+    # "Weekly progress home": "0ba2699e66a64826b0dc32563ae1f41e",
     "2023": "b1a820decce443c795f7157f77bd7698",
     "2024": "2ba0c3f7a50a43d680b51ce1a59f423f",
+    "2025": "166e95c5c8e580c084dffefd91d48b59",
 }
-PAGE_ID = PAGE_ID_MAPPING["2024"]
+
+T = TypeVar("T")
+U = TypeVar("U")
+
+
+def flatmap(func: Callable[[T], dict[str, U]], iter: Iterable[T]) -> dict[str, U]:
+    acc: dict[str, U] = {}
+    for arg in iter:
+        acc |= func(arg)
+    return acc
 
 
 class Updater:
@@ -29,8 +44,8 @@ class Updater:
     NEXT_WEEK_TEMPLATE = "{{next}}"
     INTERVAL = int(os.environ.get("INTERVAL_IN_SEC", "60"))
 
-    def __init__(self, watch_page_id: str) -> None:
-        self.watch_page_id = watch_page_id
+    def __init__(self, *watch_page_ids: str) -> None:
+        self.watch_page_ids = list(watch_page_ids)
 
         token = os.environ["NOTION_TOKEN"]
         self.notion = Client(auth=token)
@@ -46,11 +61,11 @@ class Updater:
             sleep(self.INTERVAL)
 
     def update(self):
-        page_ids = self._detect_changes(self.watch_page_id)
+        page_ids = flatmap(self._detect_changes, self.watch_page_ids)
         for page_id, new_title in page_ids.items():
             self._update_title(page_id, new_title)
 
-    def _detect_changes(self, parent_child_id: str):
+    def _detect_changes(self, parent_child_id: str) -> dict[str, str]:
         page_title_mapping = dict()
         children = self.notion.blocks.children.list(parent_child_id)
         logger.info(children)
@@ -90,7 +105,7 @@ class Updater:
 
 
 def main():
-    watcher = Updater(PAGE_ID)
+    watcher = Updater(*PAGE_ID_MAPPING.values())
     watcher.watch()
 
 

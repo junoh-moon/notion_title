@@ -11,9 +11,9 @@ def main(args):
     if args.generate:
         title.main(args)
     elif args.watch:
-        updater.Updater(updater.PAGE_ID).watch()
+        updater.Updater(*updater.PAGE_ID_MAPPING.values()).watch()
     elif args.update:
-        updater.Updater(updater.PAGE_ID).update()
+        updater.Updater(*updater.PAGE_ID_MAPPING.values()).update()
     return
 
 

@@ -31,7 +31,7 @@ repos:
       - id: trailing-whitespace
   # Examine whether PEP8 coding style is satisfied.
   - repo: https://github.com/PyCQA/flake8
-    rev: 3.9.2
+    rev: 6.1.0
     hooks:
       - id: flake8
         args:
