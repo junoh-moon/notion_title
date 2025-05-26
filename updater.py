@@ -23,8 +23,8 @@ logger = log.init()
 
 PAGE_ID_MAPPING = {
     # "Weekly progress home": "0ba2699e66a64826b0dc32563ae1f41e",
-    "2023": "b1a820decce443c795f7157f77bd7698",
-    "2024": "2ba0c3f7a50a43d680b51ce1a59f423f",
+    # "2023": "b1a820decce443c795f7157f77bd7698",
+    # "2024": "2ba0c3f7a50a43d680b51ce1a59f423f",
     "2025": "166e95c5c8e580c084dffefd91d48b59",
 }
 
