@@ -18,7 +18,7 @@ COPY updater.py                 ./
 COPY main.py                    ./
 COPY log.py                     ./
 
-RUN poetry install --only main
+RUN poetry install --only main --no-root
 
 
 ENTRYPOINT [ "python", "main.py" ]
