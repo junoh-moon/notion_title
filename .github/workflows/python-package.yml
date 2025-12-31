@@ -107,7 +107,7 @@ jobs:
 
             /home/sixtyfive/.local/bin/yq -i '.spec.jobTemplate.spec.template.spec.containers[0].image="${{ env.REGISTRY }}/${{ env.NAME }}:${{ steps.short-sha.outputs.sha }}"' "$path"
             /usr/bin/cat "$path"
-            #/snap/bin/kubectl apply -f "$path"
+            /snap/bin/kubectl apply -f "$path" || true
   notification:
     runs-on: ubuntu-latest
     needs: [ deploy ]
