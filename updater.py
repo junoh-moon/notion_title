@@ -26,6 +26,7 @@ PAGE_ID_MAPPING = {
     # "2023": "b1a820decce443c795f7157f77bd7698",
     # "2024": "2ba0c3f7a50a43d680b51ce1a59f423f",
     "2025": "166e95c5c8e580c084dffefd91d48b59",
+    "2026": "2dae95c5c8e580bc8086dbb72f1cbba0",
 }
 
 T = TypeVar("T")
